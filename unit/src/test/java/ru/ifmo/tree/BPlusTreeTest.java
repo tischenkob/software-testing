@@ -56,7 +56,7 @@ public class BPlusTreeTest {
                 .stream()
                 .map(BPlusTree.Node.Entry::getValue)
                 .collect(Collectors.toList())
-                .containsAll(List.of(0, 1, 2));
+                .equals(List.of(0, 1, 2));
         assertTrue(containsSmaller);
 
         var containsGreater
@@ -65,7 +65,7 @@ public class BPlusTreeTest {
                 .stream()
                 .map(BPlusTree.Node.Entry::getValue)
                 .collect(Collectors.toList())
-                .containsAll(List.of(3, 4, 5, 6));
+                .equals(List.of(3, 4, 5, 6));
         assertTrue(containsGreater);
     }
 
@@ -84,23 +84,22 @@ public class BPlusTreeTest {
                 .stream()
                 .map(BPlusTree.Node.Entry::getValue)
                 .collect(Collectors.toList())
-                .containsAll(List.of(4, 7, 10));
+                .equals(List.of(4, 7, 10));
         assertTrue(leftContains);
 
         var rightContains = rootLink.getRight().getEntries()
                 .stream()
                 .map(BPlusTree.Node.Entry::getValue)
                 .collect(Collectors.toList())
-                .containsAll(List.of(16, 19, 22));
+                .equals(List.of(16, 19, 22));
         assertTrue(rightContains);
 
 
         var leaf = (BPlusTree.LeafNode) ((BPlusTree.InnerNode.NodeLink) rootLink.getLeft().getEntries().first()).getLeft();
         for (int i = 0; i < 21; i += 3) {
-            assertTrue(leaf.getEntries().stream()
+            assertEquals(leaf.getEntries().stream()
                     .map(BPlusTree.Node.Entry::getValue)
-                    .collect(Collectors.toList())
-                    .containsAll(List.of(i + 1, i + 2, i + 3)));
+                    .collect(Collectors.toList()), List.of(i + 1, i + 2, i + 3));
             leaf = leaf.getNext();
         }
 
