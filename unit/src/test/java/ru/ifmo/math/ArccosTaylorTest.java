@@ -1,13 +1,11 @@
-package ru.ifmo.algo;
+package ru.ifmo.math;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 import static org.junit.Assert.*;
 

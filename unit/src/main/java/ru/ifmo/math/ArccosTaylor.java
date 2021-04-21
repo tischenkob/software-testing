@@ -1,4 +1,4 @@
-package ru.ifmo.algo;
+package ru.ifmo.math;
 
 import static java.lang.Math.*;
 
