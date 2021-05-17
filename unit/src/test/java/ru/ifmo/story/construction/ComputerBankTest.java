@@ -1,12 +1,14 @@
 package ru.ifmo.story.construction;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class ComputerBankTest {
 
@@ -17,7 +19,7 @@ public class ComputerBankTest {
     Wall back;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         front = new ComputerBankWall();

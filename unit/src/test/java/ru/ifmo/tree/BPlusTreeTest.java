@@ -1,19 +1,22 @@
 package ru.ifmo.tree;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+
 
 public class BPlusTreeTest {
 
     private BPlusTree tree;
 
 
-    @Before
+    @BeforeEach
     public void setup() {
         tree = new BPlusTree(7);
     }

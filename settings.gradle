@@ -1,0 +1,4 @@
+rootProject.name = "itmo-qa"
+
+include ":unit"
+include ":integration"

@@ -1,8 +1,8 @@
 package ru.ifmo.story.construction;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ComputerBankWallTest {
     Wall wall = new ComputerBankWall();
 
-    @Before
+    @BeforeEach
     public void setup(){
         wall = new ComputerBankWall();
     }

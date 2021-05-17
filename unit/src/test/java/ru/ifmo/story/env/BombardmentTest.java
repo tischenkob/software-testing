@@ -1,14 +1,14 @@
 package ru.ifmo.story.env;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 public class BombardmentTest {
     Event bombardment;
 
-    @Before
+    @BeforeEach
     public void setup() {
         bombardment = new Bombardment();
     }

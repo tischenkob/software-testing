@@ -1,0 +1,13 @@
+plugins {
+    id "java-app"
+}
+
+mainClassName = "ru.ifmo.ConcreteFunctionSystem"
+
+dependencies {
+    testImplementation ('org.junit.jupiter:junit-jupiter-api')
+    testImplementation ('org.junit.jupiter:junit-jupiter-engine')
+    testImplementation ('org.assertj:assertj-core:3.18.1')
+    testImplementation ('org.mockito:mockito-core:3.7.7')
+    testImplementation ('org.mockito:mockito-junit-jupiter:3.7.7')
+}

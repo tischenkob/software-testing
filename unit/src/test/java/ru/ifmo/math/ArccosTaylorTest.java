@@ -1,13 +1,15 @@
 package ru.ifmo.math;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.Math.abs;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static java.lang.Math.*;
+
+
 
 public class ArccosTaylorTest {
 
@@ -35,7 +37,7 @@ public class ArccosTaylorTest {
     }
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         arccos = ArccosTaylor.with(PRECISION);
     }
