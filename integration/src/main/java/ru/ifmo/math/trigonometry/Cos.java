@@ -12,6 +12,9 @@ public class Cos implements CosineFunction {
     @Override
     public double of(double x) {
         double sign = (x > PI / 2) ? -1 : 1;
-        return sign * Math.sqrt(1 - Math.pow(sin.of(x), 2));
+        double square = Math.pow(sin.of(x), 2);
+        if (Math.abs(square - 1) < 0.0001) square = 1.0;
+        double root = Math.sqrt(1 - square);
+        return sign * root;
     }
 }
