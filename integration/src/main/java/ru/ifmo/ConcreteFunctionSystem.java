@@ -10,8 +10,6 @@ import ru.ifmo.math.trigonometry.Sec;
 import static java.lang.Math.pow;
 
 public class ConcreteFunctionSystem implements Computable {
-
-    private final double ACCURACY;
     private final Cot cot;
     private final Sec sec;
     private final Logarithmic log2;
@@ -24,8 +22,7 @@ public class ConcreteFunctionSystem implements Computable {
     private final FunctionSystem functionSystem;
 
     @Builder
-    public ConcreteFunctionSystem(double ACCURACY, Cot cot, Sec sec, Logarithmic log2, Logarithmic log3, Logarithmic log5, Logarithmic log10) {
-        this.ACCURACY = ACCURACY;
+    public ConcreteFunctionSystem(Cot cot, Sec sec, Logarithmic log2, Logarithmic log3, Logarithmic log5, Logarithmic log10) {
         this.cot = cot;
         this.sec = sec;
         this.log2 = log2;
