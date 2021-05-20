@@ -1,12 +1,16 @@
 package ru.ifmo.math.trigonometry;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.opencsv.CSVWriter;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import static java.lang.Math.PI;
@@ -30,6 +34,16 @@ public class CosTest {
         );
     }
 
+    static CSVWriter writer;
+
+    @SneakyThrows
+    @BeforeAll
+    public static void setup() {
+        Path filePath = Path.of("/home/bogdan/cos.csv");
+        if (!Files.exists(filePath)) Files.createFile(filePath);
+        writer = new CSVWriter(new FileWriter(filePath.toString()));
+    }
+
     @ParameterizedTest
     @MethodSource("provideValuesForOfTest")
     public void mockedOfTest(double expected, double x, double sinValue) {
@@ -38,5 +52,22 @@ public class CosTest {
         cos = new Cos(sin);
         var actual = cos.of(x);
         assertEquals(expected, actual, accuracy);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideValuesForOfTest")
+    public void integrationTest(double expected, double x, double sinValue) {
+        var sin = new Sin(accuracy);
+        cos = new Cos(sin);
+        var actual = cos.of(x);
+        assertEquals(expected, actual, accuracy);
+
+        writer.writeNext(new String[]{String.valueOf(x), String.valueOf(actual)});
+    }
+
+    @SneakyThrows
+    @AfterAll
+    public static void shutdown() {
+        writer.close();
     }
 }

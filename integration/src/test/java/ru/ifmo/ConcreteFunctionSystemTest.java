@@ -1,5 +1,9 @@
 package ru.ifmo;
 
+import com.opencsv.CSVWriter;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -11,16 +15,30 @@ import ru.ifmo.math.trigonometry.Cot;
 import ru.ifmo.math.trigonometry.Sec;
 import ru.ifmo.math.trigonometry.Sin;
 
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ConcreteFunctionSystemTest {
-    private final double ACCURACY = 0.001;
+    private final double ACCURACY = 0.01;
     ConcreteFunctionSystem system;
 
     double[] mockedArguments = {-1000, -0.0001, 0, 0.0001, 1000};
     double[] mockedResults = {0, 0, 0, -3, -3};
+
+    static CSVWriter writer;
+
+    @SneakyThrows
+    @BeforeAll
+    public static void setupWriter() {
+        Path filePath = Path.of("/home/bogdan/system.csv");
+        if (!Files.exists(filePath)) Files.createFile(filePath);
+        writer = new CSVWriter(new FileWriter(filePath.toString()));
+    }
 
     private void mockedSetup() {
         var secMock = mock(Sec.class);
@@ -47,7 +65,6 @@ public class ConcreteFunctionSystemTest {
                 .log3(log3Mock)
                 .log5(log5Mock)
                 .log10(log10Mock)
-                .ACCURACY(ACCURACY)
                 .build();
     }
 
@@ -69,7 +86,6 @@ public class ConcreteFunctionSystemTest {
         Logarithmic log = new NaturalLog(ACCURACY);
 
         system = ConcreteFunctionSystem.builder()
-                .ACCURACY(ACCURACY)
                 .cot(new Cot(sin, cos))
                 .log2(new Log(log, 2))
                 .log3(new Log(log, 3))
@@ -85,5 +101,13 @@ public class ConcreteFunctionSystemTest {
         setup();
         var actual = system.of(x);
         assertEquals(expected, actual, ACCURACY);
+
+        writer.writeNext(new String[]{String.valueOf(x), String.valueOf(actual)});
+    }
+
+    @SneakyThrows
+    @AfterAll
+    public static void shutdown() {
+        writer.close();
     }
 }
