@@ -5,7 +5,7 @@ plugins {
 mainClassName = "ru.ifmo.Main"
 
 dependencies {
-    implementation project(":common-math")
+    implementation project(":math")
 
     testImplementation('org.junit.jupiter:junit-jupiter-api')
     testImplementation('org.junit.jupiter:junit-jupiter-engine')

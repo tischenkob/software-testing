@@ -5,7 +5,7 @@ plugins {
 mainClassName = "ru.ifmo.ConcreteFunctionSystem"
 
 dependencies {
-    implementation project(':common-math')
+    implementation project(':math')
 
     implementation 'com.opencsv:opencsv:4.1'
 

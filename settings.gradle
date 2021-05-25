@@ -2,6 +2,5 @@ rootProject.name = "itmo-qa"
 
 include ":unit"
 include ":integration"
-include 'math'
-findProject(':math')?.name = 'common-math'
-
+include ":math"
+include ":functional"
