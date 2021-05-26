@@ -2,7 +2,7 @@ plugins {
     id "java-app"
 }
 
-mainClassName = "ru.ifmo.ConcreteFunctionSystem"
+//mainClassName = "ru.ifmo.ConcreteFunctionSystem"
 
 dependencies {
     implementation project(':math')
