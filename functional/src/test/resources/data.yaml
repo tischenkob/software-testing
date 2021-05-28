@@ -1,0 +1,13 @@
+wot:
+  login:
+    username: username
+    password: password
+  registration:
+    username: username
+    password: password
+  support:
+    category: category
+    article: article
+  clan:
+    name: name
+    message: message
