@@ -7,25 +7,24 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import ru.ifmo.PageObject;
 
+@Getter
 public class MainPage extends PageObject {
-    @Getter
+
     private final String url = "https://worldoftanks.ru";
 
     @FindBy(xpath = "//a[text() = 'создать аккаунт']")
     private WebElement registerLink;
 
-    @FindBy(xpath = "//a[text() = 'Центр поддержки']")
-    @CacheLookup
+    @FindBy(xpath = "//div[@class = 'cm-menu_static']/a[span[text() = 'Центр поддержки']]")
     private WebElement supportLink;
 
     @FindBy(xpath = "//a[contains(text(), 'Кланы') and @class='nav-submenu_link']")
-    @CacheLookup
     private WebElement clanCenterLink;
 
     @FindBy(xpath = "//a[contains(@class, 'cm-link') and text() = 'Войти']")
     private WebElement enterLink;
 
-    @FindBy(xpath = "//a//preceding-sibling::div[contains(@class, 'cm-notifications')]")
+    @FindBy(xpath = "//a[contains(@class, 'cm-user-menu-link')]")
     private WebElement profileLink;
 
     @FindBy(xpath = "//a[contains(@class, 'cm-footer-logout_link') and contains(text(), 'Выйти')]")
@@ -49,6 +48,7 @@ public class MainPage extends PageObject {
     }
 
     public SupportPage clickSupport() {
+
         supportLink.click();
         return new SupportPage(driver);
     }

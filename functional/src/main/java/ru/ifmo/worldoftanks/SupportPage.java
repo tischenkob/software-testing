@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.ifmo.PageObject;
 
 public class SupportPage extends PageObject {
@@ -15,9 +17,10 @@ public class SupportPage extends PageObject {
     }
 
     public void clickCardWithCategory(@NonNull String name) {
-        String xpathFormat = "//div[@class='category-card']/descendant::span[text()='%s']";
+        String xpathFormat = "//a[@class='category-card']/descendant::span[text()='%s']";
         String xpath = String.format(xpathFormat, name);
-        var categoryCard = driver.findElement(By.xpath(xpath));
+        var categoryCard = new WebDriverWait(driver, 15)
+                .until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         categoryCard.click();
     }
 
@@ -38,7 +41,9 @@ public class SupportPage extends PageObject {
     }
 
     private void clickArticleWith(@NonNull String title) {
-        var article = driver.findElement(By.xpath(String.format("//a[text()='%s']", title)));
+        var element = By.xpath(String.format("//a[text()='%s']", title));
+        var article = new WebDriverWait(driver, 15)
+                .until(ExpectedConditions.elementToBeClickable(element));
         article.click();
     }
 }
