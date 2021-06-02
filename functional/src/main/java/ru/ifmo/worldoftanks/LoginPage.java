@@ -6,16 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.ifmo.PageObject;
 
+@Getter
 public class LoginPage extends PageObject {
 
-    @Getter
     private final String url = "https://ru.wargaming.net/id/signin/";
 
-    @FindBy(xpath = "//input[@id='id_email']")
+    @FindBy(xpath = "//input[@id='id_login']")
     private WebElement emailField;
     @FindBy(xpath = "//input[@id='id_password']")
     private WebElement passwordField;
-    @FindBy(xpath = "//button/child::span[@text='Войти']")
+    @FindBy(xpath = "//button[@type='submit']")
     private WebElement enterButton;
 
     public LoginPage(WebDriver driver) {
