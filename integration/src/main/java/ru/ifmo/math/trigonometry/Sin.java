@@ -1,14 +1,15 @@
 package ru.ifmo.math.trigonometry;
 
 import ru.ifmo.math.Computable;
-import ru.ifmo.math.PreciseFunction;
+import ru.ifmo.math.Factorial;
+import ru.ifmo.math.AccurateFunction;
 
 import static java.lang.Math.*;
 
 
-public class Sin extends PreciseFunction implements SineFunction {
-    public Sin(double PRECISION) {
-        super(PRECISION);
+public class Sin extends AccurateFunction implements SineFunction {
+    public Sin(double ACCURACY) {
+        super(ACCURACY);
     }
 
     @Override
@@ -20,7 +21,7 @@ public class Sin extends PreciseFunction implements SineFunction {
         double current = 10;
         double previous = 0;
         int n = 0;
-        while (abs(previous - current) >= PRECISION) {
+        while (abs(previous - current) >= ACCURACY) {
             previous = current;
             current = series.of(n);
             result += current;
@@ -34,8 +35,7 @@ public class Sin extends PreciseFunction implements SineFunction {
     }
 
     private static int fact(int x) {
-        if (x == 1) return x;
-        return x * fact(x - 1);
+        return Factorial.of(x).intValue();
     }
 
     private static double putInBounds(double x) {

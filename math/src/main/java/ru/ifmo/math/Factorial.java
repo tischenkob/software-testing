@@ -20,7 +20,7 @@ public class Factorial {
 
     public static Long of(int value) {
         if (value < 0) throw new IllegalArgumentException("Factorial value cannot be less than 0.");
-        long result = 1L;
+        long result;
         try {
             result = FACTORIALS_CACHE.get(value);
             if (result == 0L) throw new IndexOutOfBoundsException();

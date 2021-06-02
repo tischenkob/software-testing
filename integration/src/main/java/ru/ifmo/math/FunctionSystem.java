@@ -8,6 +8,8 @@ public class FunctionSystem implements Computable {
 
     @Override
     public double of(double x) {
-        return (x > 0) ? positiveArgsFunction.of(x) : negativeArgsFunction.of(x);
+        if (x == 0) return 0;
+        if (x > 0) return positiveArgsFunction.of(x);
+        return negativeArgsFunction.of(x);
     }
 }

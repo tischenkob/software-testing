@@ -1,16 +1,14 @@
 package ru.ifmo.math.logarithmic;
 
-import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class Log implements Logarithmic {
-    private final Logarithmic core;
+    private final Logarithmic log;
     private final int base;
 
     @Override
     public double of(double x) {
-        return core.of(x) / core.of(base);
+        return log.of(x) / log.of(base);
     }
 }
