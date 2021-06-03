@@ -11,11 +11,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 public abstract class AbstractUiTest {
     @Getter
     WebDriver driver;
     @Getter
-    String url;
+    String url = "https://worldoftanks.ru/";
 
     private final static int TIMEOUT = 15;
 
@@ -31,6 +33,7 @@ public abstract class AbstractUiTest {
 
     public void set(WebDriver instance) {
         driver = instance;
+        driver.manage().timeouts().implicitlyWait(10, SECONDS);
     }
 
     @BeforeEach

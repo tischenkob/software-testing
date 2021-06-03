@@ -10,7 +10,8 @@ public class CompleteRegistrationPage extends PageObject {
     @Getter
     private final String url = "https://ru.wargaming.net/registration/ru/verify";
 
-    @FindBy(xpath = "//h1[contains(text(), 'Завершение регистрации')]")
+    @Getter
+    @FindBy(xpath = "//h1[contains(text(), 'АККАУНТ СОЗДАН')]")
     private WebElement completeRegistrationText;
 
     public CompleteRegistrationPage(WebDriver driver) {

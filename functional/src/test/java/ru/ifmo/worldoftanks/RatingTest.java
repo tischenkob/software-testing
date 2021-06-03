@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RatingTest extends AbstractUiTest {
 
-    @Override
-    public String getUrl() {
-        return "https://worldoftanks.ru/";
-    }
-
     @Test
     public void rateArticle() throws InterruptedException {
         var loginTest = new LoginTest(); // hehe

@@ -4,10 +4,12 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.ifmo.PageObject;
 
+@Getter
 public class RegistrationPage extends PageObject {
-    @Getter
+
     private final String url = "https://ru.wargaming.net/registration/ru";
 
     @FindBy(xpath = "//input[@type = 'email' and @name = 'login']")
@@ -22,7 +24,7 @@ public class RegistrationPage extends PageObject {
     @FindBy(xpath = "//input[@id = 'id_re_password']")
     private WebElement repeatPasswordField;
 
-    @FindBy(xpath = "//input[@id = 'id_eula']")
+    @FindBy(xpath = "//label[contains(@class, 'checkbox-game-label') and @for='id_eula']")
     private WebElement licenseAgreementCheckbox;
 
     @FindBy(xpath = "//button[@type = 'submit']")
@@ -38,14 +40,16 @@ public class RegistrationPage extends PageObject {
     public CompleteRegistrationPage registerUserWith(String email, String name, String password) {
         emailField.sendKeys(email);
         nameField.sendKeys(name);
-        if (suggestedNameButton.isDisplayed()) {
-            suggestedNameButton.click();
-        }
+//        if (suggestedNameButton.isDisplayed()) {
+//            suggestedNameButton.click();
+//        }
         passwordField.sendKeys(password);
         repeatPasswordField.sendKeys(password);
         licenseAgreementCheckbox.click();
 
         continueButton.click();
+
+        new WebDriverWait(driver, 7);
 
         return new CompleteRegistrationPage(driver);
     }

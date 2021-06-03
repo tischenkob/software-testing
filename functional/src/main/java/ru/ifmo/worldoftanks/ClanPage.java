@@ -8,9 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.ifmo.PageObject;
 
+import java.util.ArrayList;
+
+@Getter
 public class ClanPage extends PageObject {
 
-    @Getter
     private final String url = "https://ru.wargaming.net/clans/wot/find_clan/";
 
     @FindBy(xpath = "//div[contains(text(), 'Заявка в клан') and contains(text(), 'успешно отправлена')]")
@@ -18,12 +20,24 @@ public class ClanPage extends PageObject {
 
     private WebElement chosenClanBlock;
 
+    @FindBy(xpath = "//header[@class='info']//a[span[text()='Подобрать клан']]")
+    private WebElement clanPortalLink;
+
+    @FindBy(xpath = "//a[contains(@class, 'sidebar_toggle')]")
+    private WebElement subMenuButton;
+
     public ClanPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean submissionIsSuccessful() {
         return submissionDialogTitle.isDisplayed();
+    }
+
+    public void openClanPortal() {
+        clanPortalLink.click();
+        var portalTab = new ArrayList<>(driver.getWindowHandles()).get(1);
+        driver.switchTo().window(portalTab);
     }
 
     public void selectClanWith(@NonNull String clanName) {
@@ -34,6 +48,10 @@ public class ClanPage extends PageObject {
     public void sendRequestWith(@NonNull String message) {
         fillReasonToAcceptWith(message);
         clickSendRequestButton();
+    }
+
+    public void closeSubMenu() {
+        subMenuButton.click();
     }
 
     private WebElement findClanBlockFor(String clanName) {

@@ -12,11 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest extends AbstractUiTest {
 
-    @Override
-    public String getUrl() {
-        return "https://worldoftanks.ru/";
-    }
-
     @Test
     public void login() throws InterruptedException {
 
